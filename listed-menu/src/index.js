@@ -28,8 +28,19 @@ class App extends Component{
         {
             name:'Garlic',
             id:uuid(),
-        }
-    ]
+        },
+    ];
+    
+    state={
+        favorites:[],
+    };
+
+    // toggleInFavorites = id =>{
+    //     let favorites;
+    //     const isItemInFavorites =this.state.favorites(
+    //     favorites => favorite.id === id
+    //     );
+    // }
 }
 
 export default App;
