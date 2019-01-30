@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { CSSTransition } from 'react-transition-group';
+import {
+    BrowserRouter as Router,
+    Route,
+    Switch,
+    Link,
+} from 'react-router-dom';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import cx from 'classnames';
 import './index.css';
 
