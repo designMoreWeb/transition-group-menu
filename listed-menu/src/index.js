@@ -28,7 +28,7 @@ class App extends Component{
         {
             name:'Garlic',
             id:uuid(),
-        },
+        }
     ]
 }
 
