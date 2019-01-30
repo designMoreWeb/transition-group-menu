@@ -6,12 +6,19 @@ import './index.css';
 
 class App extends Component {
     state = {
-        showBalloon: true,
+        showBalloon: false,
+        highlightMenuItem:false,
     };
 
     toggle = () => {
         this.setState(prevState => ({
             showBalloon: !prevState.showBalloon,
+        }));
+    };
+
+    toggleHighlightMenuItem = () =>{
+        this.setState(state =>({
+            highlightMenuItem:!state.highlightMenuItem
         }));
     };
 
@@ -31,12 +38,15 @@ class App extends Component {
                     timeout={350}
                     classNames="balloon"
                     unmountOnExit //leave dom on exit
-                    appear
+                    onEntered={this.toggleHighlightMenuItem}
+                    onExit={this.toggleHighlightMenuItem}
                 >
                     <div className="menu">
                         <ul className="list">
                             <li className="list-item">Home</li>
-                            <li className="list-item">Profile</li>
+                            <li className={cx('list-item',{
+                                'list-item--active':this.state.highlightMenuItem,
+                        })}>Profile</li>
                             <li className="list-item">Favorites</li>
                             <li className="list-item">Sign out</li>
                         </ul>
