@@ -10,7 +10,7 @@
     --menu-bg-color: #ffdc73;
     --fade-from-color: transparent;
     --fade-to-color: black;
-    --timeout: 350ms;
+    --timeout: 3500ms;
 }
 
 body {
@@ -59,3 +59,24 @@ body {
     padding: 5px 0;
 }
 
+.balloon{
+    padding: 5px 0;
+}
+
+.balloon-enter{
+    opacity: 0;
+}
+
+.balloon-enter-active{
+    opacity: 1;
+    transition: opacity var(--timeout);
+}
+
+.balloon-exit{
+    opacity: 1;
+}
+
+.balloon-exit-active{
+    opacity: 0;
+    transition: opacity var(--timeout);
+}

@@ -28,7 +28,7 @@ class App extends Component {
         </button>
                 <CSSTransition
                     in = {this.state.showBalloon}
-                    timeout={350}
+                    timeout={3500}
                     classNames="balloon"
                     unmountOnExit //leave dom on exit
                 >
