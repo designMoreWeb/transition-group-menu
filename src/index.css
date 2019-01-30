@@ -10,7 +10,7 @@
     --menu-bg-color: #ffdc73;
     --fade-from-color: transparent;
     --fade-to-color: black;
-    --timeout: 3500ms;
+    --timeout: 350ms;
 }
 
 body {
@@ -64,19 +64,35 @@ body {
 }
 
 .balloon-enter{
-    opacity: 0;
+    top: var(--menu-starting-top);
+    width:var(--toggler-width);
+    max-height:var(--toggler-height);
+    color:var(--fade-from-color);
+    background-color:var(--toggler-bg-color);
 }
 
 .balloon-enter-active{
-    opacity: 1;
-    transition: opacity var(--timeout);
+    top: var(--menu-ending-top);
+    width:var(--menu-width);
+    max-height:var(--menu-max-height);
+    color:var(--fade-to-color);
+    background-color:var(--menu-bg-color);
+    transition: all var(--timeout);
 }
 
 .balloon-exit{
-    opacity: 1;
+    top: var(--menu-ending-top);
+    width:var(--menu-width);
+    max-height:var(--menu-max-height);
+    color:var(--fade-to-color);
+    background-color:var(--menu-bg-color);
 }
 
 .balloon-exit-active{
-    opacity: 0;
-    transition: opacity var(--timeout);
+    top: var(--menu-starting-top);
+    width:var(--toggler-width);
+    max-height:var(--toggler-height);
+    color:var(--fade-from-color);
+    background-color:var(--toggler-bg-color);
+    transition: all var(--timeout);
 }
