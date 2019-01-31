@@ -111,6 +111,4 @@ class App extends Component {
 
 export default Base;
 
-const rootElement = document.getElementById('root');
-ReactDOM.render( < App / > , rootElement);
 
