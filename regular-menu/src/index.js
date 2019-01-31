@@ -5,6 +5,7 @@ import {
   Switch,
   Link,
 } from 'react-router-dom';
+import ReactDOM from 'react-dom';
 import {
   TransitionGroup,
   CSSTransition,
@@ -109,3 +110,7 @@ class App extends Component {
 }
 
 export default Base;
+
+const rootElement = document.getElementById('root');
+ReactDOM.render( < App / > , rootElement);
+
