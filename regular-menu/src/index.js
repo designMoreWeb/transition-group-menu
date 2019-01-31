@@ -5,7 +5,6 @@ import {
   Switch,
   Link,
 } from 'react-router-dom';
-import ReactDOM from 'react-dom';
 import {
   TransitionGroup,
   CSSTransition,
@@ -14,7 +13,7 @@ import cx from 'classnames';
 import Home from './components/Home';
 import Profile from './components/Profile';
 import Favorites from './components/Favorites';
-import './index.css';
+import '../src/index.css';
 
 class Base extends Component {
   render() {
