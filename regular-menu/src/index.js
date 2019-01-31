@@ -1,69 +1,111 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import {
-    BrowserRouter as Router,
-    Route,
-    Switch,
-    Link,
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Link,
 } from 'react-router-dom';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import {
+  TransitionGroup,
+  CSSTransition,
+} from 'react-transition-group';
 import cx from 'classnames';
+import Home from './components/Home';
+import Profile from './components/Profile';
+import Favorites from './components/Favorites';
 import './index.css';
 
-class App extends Component {
-    state = {
-        showBalloon: false,
-        highlightMenuItem:false,
-    };
-
-    toggle = () => {
-        this.setState(prevState => ({
-            showBalloon: !prevState.showBalloon,
-        }));
-    };
-
-    toggleHighlightMenuItem = () =>{
-        this.setState(state =>({
-            highlightMenuItem:!state.highlightMenuItem
-        }));
-    };
-
-    render() {
-        return (
-            <div className="container">
-                <button
-                    className={cx('toggler', {
-                        'toggler--active': this.state.showBalloon,
-                    })}
-                    onClick={this.toggle}
-                >
-                    Menu
-        </button>
-                <CSSTransition
-                    in = {this.state.showBalloon}
-                    timeout={350}
-                    classNames="balloon"
-                    unmountOnExit //leave dom on exit
-                    onEntered={this.toggleHighlightMenuItem}
-                    onExit={this.toggleHighlightMenuItem}
-                >
-                    <div className="menu">
-                        <ul className="list">
-                            <li className="list-item">Home</li>
-                            <li className={cx('list-item',{
-                                'list-item--active':this.state.highlightMenuItem,
-                        })}>Profile</li>
-                            <li className="list-item">Favorites</li>
-                            <li className="list-item">Sign out</li>
-                        </ul>
-                    </div>
-                </CSSTransition>
-            </div>
-        );
-    }
+class Base extends Component {
+  render() {
+    return (
+      <Router>
+        <Route component={App} />
+      </Router>
+    );
+  }
 }
 
-export default App;
+class App extends Component {
+  state = {
+    showBalloon: false,
+  };
 
-const rootElement = document.getElementById('root');
-ReactDOM.render(<App />, rootElement);
+  toggle = () => {
+    this.setState(prevState => ({
+      showBalloon: !prevState.showBalloon,
+    }));
+  };
+
+  componentWillReceiveProps(nextProps) {
+    // Hide menu on route change.
+    if (nextProps.location !== this.props.location) {
+      this.setState({ showBalloon: false });
+    }
+  }
+
+  render() {
+    const { location } = this.props;
+    return (
+      <div className="container">
+        <button
+          className={cx('toggler', {
+            'toggler--active': this.state.showBalloon,
+          })}
+          onClick={this.toggle}
+        >
+          Menu
+        </button>
+        <CSSTransition
+          in={this.state.showBalloon}
+          timeout={350}
+          classNames="balloon"
+          unmountOnExit
+        >
+          <div className="menu">
+            <ul className="list">
+              <li className="list-item">
+                <Link to="/">Home</Link>
+              </li>
+              <li className="list-item">
+                <Link to="/profile">Profile</Link>
+              </li>
+              <li className="list-item">
+                <Link to="/favorites">Favorites</Link>
+              </li>
+              <li className="list-item">Sign out</li>
+            </ul>
+          </div>
+        </CSSTransition>
+        <TransitionGroup>
+          <CSSTransition
+            key={location.key}
+            classNames="swipe"
+            timeout={500}
+          >
+            <div className="swipe-container">
+              <Switch location={location}>
+                <Route
+                  exact
+                  path="/"
+                  component={Home}
+                />
+                <Route
+                  exact
+                  path="/profile"
+                  component={Profile}
+                />
+                <Route
+                  exact
+                  path="/favorites"
+                  component={Favorites}
+                />
+              </Switch>
+            </div>
+          </CSSTransition>
+        </TransitionGroup>
+      </div>
+    );
+  }
+}
+
+export default Base;

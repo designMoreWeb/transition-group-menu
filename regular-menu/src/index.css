@@ -13,10 +13,6 @@
     --timeout: 350ms;
 }
 
-body {
-    font-family: sans-serif;
-}
-
 .container {
     position: relative;
 }
@@ -59,45 +55,63 @@ body {
     padding: 5px 0;
 }
 
-.list-item--active{
-    color: crimson;
-    transition: color 250ms;
-}
-
-.balloon{
-    padding: 5px 0;
-}
-
-.balloon-enter{
+.balloon-enter {
     top: var(--menu-starting-top);
-    width:var(--toggler-width);
-    max-height:var(--toggler-height);
-    color:var(--fade-from-color);
-    background-color:var(--toggler-bg-color);
+    width: var(--toggler-width);
+    max-height: var(--toggler-height);
+    color: var(--fade-from-color);
+    background-color: var(--toggler-bg-color);
 }
 
-.balloon-enter-active{
+.balloon-enter-active {
     top: var(--menu-ending-top);
-    width:var(--menu-width);
-    max-height:var(--menu-max-height);
-    color:var(--fade-to-color);
-    background-color:var(--menu-bg-color);
+    width: var(--menu-width);
+    max-height: var(--menu-max-height);
+    color: var(--fade-to-color);
+    background-color: var(--menu-bg-color);
     transition: all var(--timeout);
 }
 
-.balloon-exit{
+.balloon-exit {
     top: var(--menu-ending-top);
-    width:var(--menu-width);
-    max-height:var(--menu-max-height);
-    color:var(--fade-to-color);
-    background-color:var(--menu-bg-color);
+    width: var(--menu-width);
+    max-height: var(--menu-max-height);
+    color: var(--fade-to-color);
+    background-color: var(--menu-bg-color);
 }
 
-.balloon-exit-active{
+.balloon-exit-active {
     top: var(--menu-starting-top);
-    width:var(--toggler-width);
-    max-height:var(--toggler-height);
-    color:var(--fade-from-color);
-    background-color:var(--toggler-bg-color);
+    width: var(--toggler-width);
+    max-height: var(--toggler-height);
+    color: var(--fade-from-color);
+    background-color: var(--toggler-bg-color);
     transition: all var(--timeout);
+}
+
+.swipe-container {
+    position: absolute;
+}
+
+.swipe-enter {
+    transform: translateY(-100%);
+    opacity: 0;
+}
+
+.swipe-enter-active {
+    transform: translateY(0%);
+    opacity: 1;
+    transition: all 500ms;
+}
+
+.swipe-exit {
+    transform: translateY(0%);
+    opacity: 1;
+}
+
+.swipe-exit-active {
+    transform: translateY(100%);
+    opacity: 0;
+    transition: all 500ms;
+
 }
